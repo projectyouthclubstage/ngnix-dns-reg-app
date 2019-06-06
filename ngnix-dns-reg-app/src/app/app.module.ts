@@ -9,7 +9,9 @@ import { RouteListComponent } from './route-list/route-list.component';
 import { RouteAddComponent } from './route-add/route-add.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatTableModule,
+  MatFormFieldModule,
+  MatGridListModule,
+   MatTableModule,
   MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
@@ -31,6 +33,8 @@ import { MainpageComponent } from './mainpage/mainpage.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    MatFormFieldModule,
+    MatGridListModule,
     MatToolbarModule,
     MatTableModule,
     MatIconModule,
