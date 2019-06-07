@@ -1,20 +1,19 @@
-<mat-card style="margin: 30px">
-<div class="mat-table">
-    <div class="mat-header-row">
-      <div class="mat-header-cell cell-xsmall">Id</div>
-      <div class="mat-header-cell">Source</div>
-      <div class="mat-header-cell">Target</div>
-      <div class="mat-header-cell cell-xsmall"></div>
-    </div>
-    <div class="mat-row" *ngFor="let entry of x">
-      <div class="mat-cell  cell-xsmall">{{entry.id}}</div>
-      <div class="mat-cell">{{entry.source}}</div>
-      <div class="mat-cell">{{entry.target}}</div>
-      <div class="mat-cell cell-xsmall"><i class="material-icons">
-          delete
-          </i></div>
-      
-    </div>
-  </div>
-</mat-card>
+<p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Source</th>
+    <th scope="col">Target</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let entry of x; index as i">
+    <th scope="row">{{ entry.id }}</th>
+    <td>{{ entry.source}}</td>
+    <td>{{ entry.target }}</td>
+  </tr>
+  </tbody>
+</table>
 

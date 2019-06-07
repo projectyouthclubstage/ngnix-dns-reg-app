@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,8 @@ import {
   MatListModule,
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { MainpageComponent } from './mainpage/mainpage.component';
+import { MainmenuComponent } from './mainmenu/mainmenu.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,21 +28,15 @@ import { MainpageComponent } from './mainpage/mainpage.component';
     AppComponent,
     RouteListComponent,
     RouteAddComponent,
-    MainpageComponent
+    MainmenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatToolbarModule,
-    MatTableModule,
+    NgbModule,
     MatIconModule,
-    MatCardModule,
-    MatListModule,
-    MatDividerModule,
+    HttpClientModule,
     FlexLayoutModule
   ],
   providers: [],
