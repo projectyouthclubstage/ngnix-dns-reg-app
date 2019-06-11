@@ -1,11 +1,10 @@
-<p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
-
 <table class="table table-striped">
   <thead>
   <tr>
     <th scope="col">#</th>
     <th scope="col">Source</th>
     <th scope="col">Target</th>
+    <th scope="col">Action</th>
   </tr>
   </thead>
   <tbody>
@@ -13,6 +12,9 @@
     <th scope="row">{{ entry.id }}</th>
     <td>{{ entry.source}}</td>
     <td>{{ entry.target }}</td>
+    <td><a href="javascript:void(0);" (click)="delete(entry.id)"><i class="material-icons md-light">
+      delete
+      </i> </a></td>
   </tr>
   </tbody>
 </table>

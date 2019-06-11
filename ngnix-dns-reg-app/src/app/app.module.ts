@@ -21,6 +21,7 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MainmenuComponent } from './mainmenu/mainmenu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     MatIconModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mainmenu.component.css']
 })
 export class MainmenuComponent implements OnInit {
+  isCollapsed = false;
 
   constructor() { }
 

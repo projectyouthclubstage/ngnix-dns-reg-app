@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { RouteServiceService } from '../route-service.service';
 import { NginxReg } from '../shared/nginx-reg';
 
@@ -12,7 +12,15 @@ export class RouteListComponent implements OnInit {
   @Output() x : NginxReg
   constructor(private service: RouteServiceService) { 
     console.log(this.x);
-    service.getData().subscribe(data => {this.x = data});
+    this.getData();
+  }
+
+  getData(){
+    this.service.getData().subscribe(data => {this.x = data});
+  }
+
+  delete(id: string){
+    this.service.deleteData(id).subscribe(x => this.getData());
   }
 
   ngOnInit() {
