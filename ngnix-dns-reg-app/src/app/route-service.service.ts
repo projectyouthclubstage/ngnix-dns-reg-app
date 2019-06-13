@@ -16,21 +16,23 @@ const httpOptions = {
 })
 export class RouteServiceService {
 
-  apiUrl = "";
+  //apiUrl = 'http://localhost:8080/';
+  //apiUrl = 'http://192.168.233.1:9099/';
+  apiUrl = 'https://ngdnsreg.youthclubstage.de/';
   constructor(private http: HttpClient) { }
 
   
 
   getData(): Observable<NginxReg> {
-    return this.http.get<NginxReg>('http://192.168.233.1:9099/v1/dns')
+    return this.http.get<NginxReg>(this.apiUrl+'v1/dns')
     }
   
     deleteData(id: string): Observable<void> {
-      return this.http.delete<void>('http://192.168.233.1:9099/v1/dns/'+id)
+      return this.http.delete<void>(this.apiUrl+'v1/dns/'+id)
     }
 
     addData(data: CreateDns): Observable<void> {
-      return this.http.post<void>('http://192.168.233.1:9099/v1/dns', data, httpOptions)
+      return this.http.post<void>(this.apiUrl+'v1/dns', data, httpOptions)
     }
 
     handleError(error: any,data: Observable<NginxReg>): Observable<NginxReg> {

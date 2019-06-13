@@ -4,6 +4,7 @@
     <th scope="col">#</th>
     <th scope="col">Source</th>
     <th scope="col">Target</th>
+    <th scope="col">Valid</th>
     <th scope="col">Action</th>
   </tr>
   </thead>
@@ -12,6 +13,7 @@
     <th scope="row">{{ entry.id }}</th>
     <td>{{ entry.source}}</td>
     <td>{{ entry.target }}</td>
+    <td>{{ entry.valid }}</td>
     <td><a href="javascript:void(0);" (click)="delete(entry.id)"><i class="material-icons md-light">
       delete
       </i> </a></td>
