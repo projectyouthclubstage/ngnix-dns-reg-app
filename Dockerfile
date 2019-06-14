@@ -40,6 +40,7 @@ FROM arm32v7/nginx:latest
 
 # copy artifact build from the 'build environment'
 COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # expose port 80
 EXPOSE 80
