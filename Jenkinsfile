@@ -73,29 +73,14 @@ def dockerDeploy(String mybuildverison, String projektname, String dns, String d
                       sh "docker stack deploy --compose-file target/docker-compose.yml "+projektname+"-"+"$mybuildverison"
 
                       sleep 240 // second
-
-                      //sh "curl -d \'{\"source\": \""+dnsblue+"\",\"target\": \""+projektname+"-$mybuildverison"+":80\"}\' -H \"Content-Type: application/json\" -X POST http://192.168.233.1:9099/v1/dns"
-                      def id = health(dnsblue,projektname+"-$mybuildverison"+":80")
-                      sleep 10 // second
-
+                      def id = registerUrl(dnsblue,projektname+"-$mybuildverison"+":80")
                       //Health blue
-
-                      retry (3) {
-                          sleep 5
-                          httpRequest url:"https://$dnsblue", validResponseCodes: '200'
-                      }
-
+                      health("https://$dnsblue")
+                      deleleUrl(id)
 
                       //Green
-                      sh "curl -d \'{\"source\": \""+dns+"\",\"target\": \""+projektname+"-$mybuildverison"+":80\"}\' -H \"Content-Type: application/json\" -X POST http://192.168.233.1:9099/v1/dns"
-                      sleep 10 // second
-
-                      //Health green2
-
-                      retry (3) {
-                          sleep 5
-                          httpRequest url:"https://$dns", validResponseCodes: '200'
-                      }
+                      registerUrl(dns,projektname+"-$mybuildverison"+":80")
+                      health("https://$dns")
 
                       if(version != "")
                       {
@@ -103,7 +88,7 @@ def dockerDeploy(String mybuildverison, String projektname, String dns, String d
                       }
 }
 
-def health(url, target){
+def registerUrl(url, target){
   def context = """
     {"source": "$url",
     "target": "$target"}
@@ -118,4 +103,19 @@ def health(url, target){
        return json.id
    }
 
+}
+
+def health(url){
+  retry (3) {
+    sleep 5
+    httpRequest url:url, validResponseCodes: '200'
+  }  
+
+}
+
+def deleleUrl(id){
+   retry (3) {
+    sleep 5
+    httpRequest httpMode: 'DELETE', requestBody: context, url: "http://192.168.233.1:9099/v1/dns/${id}", validResponseCodes: '201'
+   }
 }
