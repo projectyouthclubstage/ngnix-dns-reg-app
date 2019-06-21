@@ -118,6 +118,6 @@ def health(url){
 def deleleUrl(id){
    retry (3) {
     sleep 5
-    httpRequest httpMode: 'DELETE', url: "http://192.168.233.1:9099/v1/dns/${id}", validResponseCodes: '201'
+    httpRequest httpMode: 'DELETE', url: "http://192.168.233.1:9099/v1/dns/${id}", validResponseCodes: '204'
    }
 }
