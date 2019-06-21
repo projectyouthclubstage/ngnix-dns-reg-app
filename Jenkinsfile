@@ -6,10 +6,10 @@ pipeline{
 agent none
   environment {
     def mybuildverison = getBuildVersion(env.BUILD_NUMBER)
-    def projektname = "ngnix-dns-reg-app"
-    def registry = "192.168.233.1:5000/ngnix-dns-reg-app"
-    def dns = "ngdns-app.youthclubstage.de"
-    def dnsblue = "ngdns-app-blue.youthclubstage.de"
+    def projektname = env.JOB_NAME.replace("_master","")
+    def registry = "192.168.233.1:5000/${projektname}}"
+    def dns = "${projektname}.youthclubstage.de"
+    def dnsblue = "${projektname}-blue.youthclubstage.de"
     def port = "80"
   }
 
@@ -116,6 +116,6 @@ def health(url){
 def deleleUrl(id){
    retry (3) {
     sleep 5
-    httpRequest httpMode: 'DELETE', requestBody: context, url: "http://192.168.233.1:9099/v1/dns/${id}", validResponseCodes: '201'
+    httpRequest httpMode: 'DELETE', url: "http://192.168.233.1:9099/v1/dns/${id}", validResponseCodes: '201'
    }
 }
