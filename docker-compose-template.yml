@@ -12,11 +12,11 @@ services:
     build:
       context: .
       dockerfile: ../Dockerfile
-    image: 192.168.233.1:5000/ngnix-dns-reg-app:{version}
+    image: {image}
     networks:
       dev:
         aliases:
-         - ngnix-dns-reg-app{version}
+         - {alias}
 networks:
   dev:
     external:

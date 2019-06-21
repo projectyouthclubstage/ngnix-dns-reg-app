@@ -40,7 +40,7 @@ stages{
 
                    script{
                       if (env.BRANCH_NAME == 'master') {
-                        dockerDeploy(mybuildverison,projektname,dns,dnsblue,port)
+                        dockerDeploy(mybuildverison,registry,projektname,dns,dnsblue,port)
                       }
 
                      }
@@ -62,9 +62,9 @@ def getBuildVersion(String buildnr){
     return dateFormat.format(date)+buildnr
 }
 
-def dockerDeploy(String mybuildverison, String projektname, String dns, String dnsblue, String port){
+def dockerDeploy(String mybuildverison,String registry, String projektname, String dns, String dnsblue, String port){
                       sh "mkdir -p target"
-                      sh "cat docker-compose-template.yml | sed -e 's/{version}/"+"$mybuildverison"+"/g' >> target/docker-compose.yml"
+                      sh "cat docker-compose-template.yml | sed -e 's/{image}/$registry:$mybuildverison/g;s/{alias}/$projektname-$mybuildverison/g' >> target/docker-compose.yml"
                       def version = sh (
                           script: 'docker stack ls |grep '+projektname+'| cut -d \" \" -f1',
                           returnStdout: true
