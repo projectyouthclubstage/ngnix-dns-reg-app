@@ -7,7 +7,7 @@ agent none
   environment {
     def mybuildverison = getBuildVersion(env.BUILD_NUMBER)
     def projektname = env.JOB_NAME.replace("_master","")
-    def registry = "192.168.233.1:5000/${projektname}}"
+    def registry = "192.168.233.1:5000/${projektname}"
     def dns = "${projektname}.youthclubstage.de"
     def dnsblue = "${projektname}-blue.youthclubstage.de"
     def port = "80"
