@@ -73,7 +73,8 @@ def dockerDeploy(String mybuildverison, String projektname, String dns, String d
 
                       sleep 240 // second
 
-                      sh "curl -d \'{\"source\": \""+dnsblue+"\",\"target\": \""+projektname+"-$mybuildverison"+":80\"}\' -H \"Content-Type: application/json\" -X POST http://192.168.233.1:9099/v1/dns"
+                      //sh "curl -d \'{\"source\": \""+dnsblue+"\",\"target\": \""+projektname+"-$mybuildverison"+":80\"}\' -H \"Content-Type: application/json\" -X POST http://192.168.233.1:9099/v1/dns"
+                      def id = health(dnsblue,projektname+"-$mybuildverison"+":80")
                       sleep 10 // second
 
                       //Health blue
@@ -99,4 +100,21 @@ def dockerDeploy(String mybuildverison, String projektname, String dns, String d
                       {
                         sh "docker stack rm "+version
                       }
+}
+
+def health(url, target){
+  def context = """
+    {"source": "$url"},
+    {"target": "$target"}
+  """
+   
+   retry (3) {
+    sleep 5
+    def response = httpRequest acceptType: 'application/json', contentType: 'application/json', httpMode: 'POST', requestBody: context, url: "http://192.168.233.1:9099/v1/dns", validResponseCodes: '200'
+       def json = new JsonSlurper().parseText(response.content)
+       echo "Status: ${response.status}"
+       echo "ID: ${json}"
+       return json.id
+   }
+
 }
