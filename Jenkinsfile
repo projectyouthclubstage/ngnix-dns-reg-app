@@ -105,8 +105,8 @@ def dockerDeploy(String mybuildverison, String projektname, String dns, String d
 
 def health(url, target){
   def context = """
-    {"source": "$url"},
-    {"target": "$target"}
+    {"source": "$url",
+    "target": "$target"}
   """
    
    retry (3) {
