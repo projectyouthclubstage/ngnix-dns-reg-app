@@ -111,7 +111,7 @@ def health(url, target){
    
    retry (3) {
     sleep 5
-    def response = httpRequest acceptType: 'application/json', contentType: 'application/json', httpMode: 'POST', requestBody: context, url: "http://192.168.233.1:9099/v1/dns", validResponseCodes: '200'
+    def response = httpRequest acceptType: 'APPLICATION_JSON_UTF8', contentType: 'APPLICATION_JSON_UTF8', httpMode: 'POST', requestBody: context, url: "http://192.168.233.1:9099/v1/dns", validResponseCodes: '200'
        def json = new JsonSlurper().parseText(response.content)
        echo "Status: ${response.status}"
        echo "ID: ${json}"
