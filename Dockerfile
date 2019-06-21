@@ -17,12 +17,12 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
-COPY ngnix-dns-reg-app/package.json /app/package.json
+COPY package.json /app/package.json
 RUN npm install
 RUN npm install -g @angular/cli@7.3.9
 
 # add app
-COPY ngnix-dns-reg-app/ /app
+COPY . /app
 
 # run tests
 #RUN ng test --watch=false

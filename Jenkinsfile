@@ -5,10 +5,10 @@ pipeline{
 agent none
   environment {
     def mybuildverison = getBuildVersion(env.BUILD_NUMBER)
-    def projektname = "ngdns-frontend"
-    def registry = "192.168.233.1:5000/ngdns-frontend"
+    def projektname = "ngnix-dns-reg-app"
+    def registry = "192.168.233.1:5000/ngnix-dns-reg-app"
     def dns = "ngdns-app.youthclubstage.de"
-    def dnsblue = "ngdns-blue.youthclubstage.de"
+    def dnsblue = "ngdns-app-blue.youthclubstage.de"
     def port = "80"
   }
 
